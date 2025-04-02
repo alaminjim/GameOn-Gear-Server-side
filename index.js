@@ -54,6 +54,31 @@ async function run() {
       res.send(result);
     });
 
+    // all equipments data update
+
+    app.patch("/equipments/:id", async (req, res) => {
+      const equipments = req.body;
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const options = { upsert: true };
+      const updateEqu = {
+        $set: {
+          image: equipments.image,
+          description: equipments.description,
+          price: equipments.price,
+          rating: equipments.rating,
+          stock: equipments.stock,
+          time: equipments.time,
+        },
+      };
+      const result = await equipmentCollection.updateOne(
+        filter,
+        updateEqu,
+        options
+      );
+      res.send(result);
+    });
+
     app.delete("/equipment/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
