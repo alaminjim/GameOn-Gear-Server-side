@@ -28,6 +28,17 @@ async function run() {
       .db("equipmentDB")
       .collection("equipment");
 
+    app.get("/equipment", async (req, res) => {
+      const cursor = equipmentCollection.find().limit(6);
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+    app.get("/equipments", async (req, res) => {
+      const cursor = equipmentCollection.find();
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     app.post("/equipment", async (req, res) => {
       const equipment = req.body;
       const result = await equipmentCollection.insertOne(equipment);
