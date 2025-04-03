@@ -69,6 +69,7 @@ async function run() {
           rating: equipments.rating,
           stock: equipments.stock,
           time: equipments.time,
+          title: equipments.title,
         },
       };
       const result = await equipmentCollection.updateOne(
