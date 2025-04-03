@@ -104,5 +104,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`running port: ${port}`);
+  console.log(`game-on-gear server running port: ${port}`);
 });
